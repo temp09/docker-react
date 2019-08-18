@@ -1,11 +1,19 @@
-#sudo: required
+sudo: required
 language: generic
 services:
   - docker
+
 before_install:
   - docker build -t amdad/docker-react -f ./Dockerfile.dev .
+<<<<<<< HEAD
 scripts:
   - docker run -e CI=true amdad/docker-react npm run test
+=======
+
+script:
+  - docker run -e CI=true amdad/docker-react npm run test -- --coverage
+
+>>>>>>> 27836baecf2c37e2523b1f34dd2b8a4bbedaca53
 deploy:
   provider: elasticbeanstalk
   region: "us-east-2"
@@ -17,4 +25,9 @@ deploy:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
+<<<<<<< HEAD
     secure: "$AWS_SECRET_KEY"
+=======
+    secure: "$AWS_SECRET_KEY"
+
+>>>>>>> 27836baecf2c37e2523b1f34dd2b8a4bbedaca53
